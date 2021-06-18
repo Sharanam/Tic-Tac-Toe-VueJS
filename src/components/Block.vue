@@ -17,8 +17,20 @@ export default {
 </script>
 <style scoped>
 div {
-  padding: 50px;
-  text-align: center;
-  border: 5px solid black;
+  padding: 5px;
+  height: 100px;
+  width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid darkgrey;
+  border-radius: 0 25px;
+  font-size: 80px;
+  font-size: 5rem;
+  cursor: pointer;
+  animation: border-color 0.5s ease-in-out;
+}
+div:active {
+  border-color: orange;
 }
 </style>
