@@ -1,9 +1,16 @@
 <template>
   <div class="container">
     <h1>Tic Tac Toe</h1>
+    <p class="status">
+      <span v-if="result" class="result">
+        Result:
+        {{ result }}
+      </span>
+      <span v-else> Turn: {{ currentTurn }} </span>
+    </p>
     <div v-for="(row, n) in values" :key="n" class="row">
       <div v-for="(box, m) in row" :key="m">
-        <block
+        <cell
           :value="box"
           :positionX="n"
           :positionY="m"
@@ -12,19 +19,16 @@
         />
       </div>
     </div>
-    <p class="status">
-      <span v-if="result">
-        Result:
-        {{ result }}
-      </span>
-      <span v-else> Turn: {{ currentTurn }} </span>
-    </p>
-    <button @click="resetDash">Reset</button>
+    <button @click="clear">
+      <b>Clear</b>
+    </button>
+    <scoreboard :score="score" />
   </div>
 </template>
 
 <script>
-import block from "./Block";
+import cell from "./Cell";
+import scoreboard from "./Scoreboard";
 
 export default {
   name: "sortingOptions",
@@ -37,6 +41,7 @@ export default {
       ],
       current: true,
       won: "",
+      score: { O: 0, X: 0 },
     };
   },
   methods: {
@@ -90,22 +95,23 @@ export default {
       }
       if (this.checkStraight() || this.checkDiagonal()) {
         this.won = this.currentTurn;
+        this.score[this.currentTurn]++;
         return;
       }
       if (tie) this.won = "T";
     },
-    resetDash() {
+    clear() {
       this.values = [
         ["", "", ""],
         ["", "", ""],
         ["", "", ""],
       ];
-      this.current = true;
       this.won = "";
     },
   },
   components: {
-    block,
+    cell,
+    scoreboard,
   },
   computed: {
     currentTurn() {
@@ -115,7 +121,7 @@ export default {
       return this.won !== ""
         ? ["X", "O"].includes(this.won)
           ? `${this.won} Won`
-          : "Match Tie"
+          : "Tie"
         : false;
     },
   },
@@ -158,5 +164,8 @@ button:active {
 .status {
   color: lightskyblue;
   font-size: 1.7em;
+}
+.result {
+  color: orangered;
 }
 </style>
