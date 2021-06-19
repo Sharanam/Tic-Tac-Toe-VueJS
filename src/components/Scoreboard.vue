@@ -24,6 +24,7 @@ export default {
 <style scoped>
 div {
   cursor: not-allowed;
+  margin-top: 20px;
 }
 h3 {
   font-size: 1.7em;

@@ -1,27 +1,29 @@
 <template>
-  <div class="container">
-    <h1>Tic Tac Toe</h1>
-    <p class="status">
-      <span v-if="result" class="result">
-        Result:
-        {{ result }}
-      </span>
-      <span v-else> Turn: {{ currentTurn }} </span>
-    </p>
-    <div v-for="(row, n) in values" :key="n" class="row">
-      <div v-for="(box, m) in row" :key="m">
-        <cell
-          :value="box"
-          :positionX="n"
-          :positionY="m"
-          :turn="current"
-          @hit="record"
-        />
+  <div>
+    <div class="container">
+      <h1>Tic Tac Toe</h1>
+      <h2 class="status">
+        <span v-if="result" class="result">
+          Result:
+          {{ result }}
+        </span>
+        <span v-else> Turn: {{ currentTurn }} </span>
+      </h2>
+      <div v-for="(row, n) in values" :key="n" class="row">
+        <div v-for="(box, m) in row" :key="m">
+          <cell
+            :value="box"
+            :positionX="n"
+            :positionY="m"
+            :turn="current"
+            @hit="record"
+          />
+        </div>
       </div>
+      <button @click="clear">
+        <h3>Clear</h3>
+      </button>
     </div>
-    <button @click="clear">
-      <b>Clear</b>
-    </button>
     <scoreboard :score="score" />
   </div>
 </template>
