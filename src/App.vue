@@ -28,4 +28,12 @@ export default {
   color: #82acd6;
   margin-top: 10px;
 }
+::-webkit-scrollbar {
+  width: 3px;
+
+  background: black;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #82acd6;
+}
 </style>

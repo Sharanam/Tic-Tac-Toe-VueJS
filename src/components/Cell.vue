@@ -33,4 +33,8 @@ div {
 div:active {
   border-color: orange;
 }
+::selection {
+  color: white;
+  background-color: black;
+}
 </style>

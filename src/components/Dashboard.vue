@@ -25,12 +25,14 @@
       </button>
     </div>
     <scoreboard :score="score" />
+    <author />
   </div>
 </template>
 
 <script>
 import cell from "./Cell";
 import scoreboard from "./Scoreboard";
+import author from "./Author";
 
 export default {
   name: "sortingOptions",
@@ -114,6 +116,7 @@ export default {
   components: {
     cell,
     scoreboard,
+    author,
   },
   computed: {
     currentTurn() {
